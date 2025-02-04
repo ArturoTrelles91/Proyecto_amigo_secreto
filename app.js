@@ -2,5 +2,5 @@
 
 
 let amigos = []
-alert ("Hay que empezar el proyecto");
+alert ("Hay que empezar el proyecto ");
 prompt("Necesito un nombre:");
