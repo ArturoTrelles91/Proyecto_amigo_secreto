@@ -21,11 +21,22 @@ function agregarAmigo(){
     
     if (nombreDeAmigo === "") {
         alert("Por favor, ingresa un nombre válido.");
+
         return;
     }
-    
+
+     // Validar si el nombre ya está en la lista
+     if (amigos.includes(nombreDeAmigo)) {
+        alert("Este nombre ya ha sido ingresado. No puedes agregarlo nuevamente.");
+        amigo.value = "";
+        return;
+    }
+    // Esta parte hay que mejorarla
     amigos.push(nombreDeAmigo);
     AsignarTextoElemento('ul',amigos)
+
+    // Limpiar el input después de agregar
+    amigo.value = "";
 
     return;
 }
@@ -39,6 +50,7 @@ function sortearAmigo(){
     }
 
     let AmigoSecreto = amigos[Math.floor(Math.random()*amigos.length)];
+// Aqui queremos mostrar el resultado, selecciona el elemento html con el id resultado
 
     let resultado = document.getElementById("resultado");
     resultado.innerHTML = `El amigo secreto es ${AmigoSecreto}`
