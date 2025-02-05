@@ -7,15 +7,6 @@
 //parseint ?
 
 let amigos = []
-//larreglo  = length(amigos)
-//let numeroEnArreglo = Math.floor(Math.random()*larreglo)+1;
-//let AmigoSecreto = amigos[numeroEnArreglo]
-
-//let nombreDeAmigos = document.querySelector('h2');
-//nombreDeAmigos.innerHTML = 'Agrega Nombres de Amigos';
-
-///let numeroEnArreglo = generaNumeroEnArreglo();
-//console.log(numeroEnArreglo);
 
 function AsignarTextoElemento(elemento,texto){
  let ElementoHTML =   document.querySelector(elemento);
@@ -25,7 +16,7 @@ function AsignarTextoElemento(elemento,texto){
 
 function agregarAmigo(){
     //alert('Click desde el boton');
-    //let nombreDeAmigo = document.querySelector('input');
+ 
     let nombreDeAmigo = document.getElementById("amigo").value;
     
     if (nombreDeAmigo === "") {
@@ -35,28 +26,25 @@ function agregarAmigo(){
     
     amigos.push(nombreDeAmigo);
     AsignarTextoElemento('ul',amigos)
-    //console.log(nombreDeAmigo);
-    //console.log(amigos)
-    //console.log(amigos.length);
+
     return;
 }
 
 
 function sortearAmigo(){
+
+    if (amigos.length === 0) {
+        alert("Debes agregar al menos un amigo antes de sortear.");
+        return;
+    }
+
     let AmigoSecreto = amigos[Math.floor(Math.random()*amigos.length)];
-    AsignarTextoElemento('h2',AmigoSecreto)
+
+    let resultado = document.getElementById("resultado");
+    resultado.innerHTML = `El amigo secreto es ${AmigoSecreto}`
     return;
 }
-//agregarAmigo();
-//let numeroAmigos = amigos.length;
 
-
-//function generaNumeroEnArreglo(){
-//    return Math.floor(Math.random()*numeroAmigos)+1;
-//}
-
-//AsignarTextoElemento('ul',amigos)
-//AsignarTextoElemento('h2','Prueba2')
 
 
 
