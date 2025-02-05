@@ -3,11 +3,6 @@
 
 let amigos = []
 
-function AsignarTextoElemento(elemento,texto){
- let ElementoHTML =   document.querySelector(elemento);
- ElementoHTML.innerHTML = texto;
- return;
-}
 
 function agregarAmigo(){
  
@@ -27,7 +22,7 @@ function agregarAmigo(){
     
     amigos.push(nombreDeAmigo);
  
-    // Limpiar el input después de agregar
+    // Limpiar el input amigo después de agregar
     amigo.value = "";
     
     // Actualizar la lista en la pantalla
@@ -44,17 +39,18 @@ function mostrarAmigos() {
     // Vamos a obtener la lista <ul>
     let listaul = document.getElementById("listaAmigos"); 
 
-
-//  Hay que limpiar la lista antes de actualizarla
+//  Hay que limpiar la lista ul antes de actualizarla
     listaul.innerHTML = ""; 
 
-    // Recorrer el array amigos y agregar cada nombre como un <li>
+    // Recorrer el array amigos y agregar cada nombre como un elemento <li>
     for (let i = 0; i < amigos.length; i++) {
 
         // Crear un <li>
-        let li = document.createElement("li"); 
+        let li = document.createElement("li");
+
         // Asignar el nombre
         li.textContent = amigos[i]; 
+
         // Agregar el elemento <li> a la lista <ul>
         listaul.appendChild(li); 
     }
@@ -63,11 +59,12 @@ function mostrarAmigos() {
 
 function sortearAmigo(){
 
+// Evita que el usuario ponga un campo vacio
     if (amigos.length === 0) {
         alert("Debes agregar al menos un amigo antes de poder sortear.");
         return;
     }
-
+// toma un amigo de la lista usando un numero aleatorio y tomando ese numero como lugar en el arreglo
     let AmigoSecreto = amigos[Math.floor(Math.random()*amigos.length)];
 
 // Aqui queremos mostrar el resultado, selecciona el elemento html con el id resultado
