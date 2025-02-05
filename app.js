@@ -33,7 +33,6 @@ function agregarAmigo(){
 
 
 //Vamos a crear la funcion mostrarAmigos()
-//siguiendo el tutorial de: https://codedamn.com/news/javascript/create-new-elements-with-javascript
 
 function mostrarAmigos() {
     // Vamos a obtener la lista <ul>
