@@ -6,14 +6,29 @@
 
 //parseint ?
 
-let amigos = []
-larreglo  = length(amigos)
-let numeroEnArreglo = Math.floor(Math.random()*larreglo)+1;
-let AmigoSecreto = amigos[numeroEnArreglo]
+///let amigos = []
+//larreglo  = length(amigos)
+//let numeroEnArreglo = Math.floor(Math.random()*larreglo)+1;
+//let AmigoSecreto = amigos[numeroEnArreglo]
 
+//let nombreDeAmigos = document.querySelector('h2');
+//nombreDeAmigos.innerHTML = 'Agrega Nombres de Amigos';
+
+
+function AsignarTextoElemento(elemento,texto){
+ let ElementoHTML =   document.querySelector(elemento);
+ ElementoHTML.innerHTML = texto;
+}
+
+function agregarAmigo(){
+    alert('Click desde el boton')
+
+}
+
+AsignarTextoElemento('h1','Prueba1')
+AsignarTextoElemento('h2','Prueba2')
 
 let intentos = 0;
-
 
 // Lista de amigos como un array - Se inicializa con = []
 // let amigos = []
