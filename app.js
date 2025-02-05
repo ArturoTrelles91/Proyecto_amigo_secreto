@@ -6,7 +6,7 @@
 
 //parseint ?
 
-///let amigos = []
+let amigos = []
 //larreglo  = length(amigos)
 //let numeroEnArreglo = Math.floor(Math.random()*larreglo)+1;
 //let AmigoSecreto = amigos[numeroEnArreglo]
@@ -14,54 +14,52 @@
 //let nombreDeAmigos = document.querySelector('h2');
 //nombreDeAmigos.innerHTML = 'Agrega Nombres de Amigos';
 
+///let numeroEnArreglo = generaNumeroEnArreglo();
+//console.log(numeroEnArreglo);
 
 function AsignarTextoElemento(elemento,texto){
  let ElementoHTML =   document.querySelector(elemento);
  ElementoHTML.innerHTML = texto;
+ return;
 }
 
 function agregarAmigo(){
-    alert('Click desde el boton')
-
+    //alert('Click desde el boton');
+    //let nombreDeAmigo = document.querySelector('input');
+    let nombreDeAmigo = document.getElementById("amigo").value;
+    
+    if (nombreDeAmigo === "") {
+        alert("Por favor, ingresa un nombre válido.");
+        return;
+    }
+    
+    amigos.push(nombreDeAmigo);
+    AsignarTextoElemento('ul',amigos)
+    //console.log(nombreDeAmigo);
+    //console.log(amigos)
+    //console.log(amigos.length);
+    return;
 }
 
-AsignarTextoElemento('h1','Prueba1')
-AsignarTextoElemento('h2','Prueba2')
 
-let intentos = 0;
+function sortearAmigo(){
+    let AmigoSecreto = amigos[Math.floor(Math.random()*amigos.length)];
+    AsignarTextoElemento('h2',AmigoSecreto)
+    return;
+}
+//agregarAmigo();
+//let numeroAmigos = amigos.length;
 
-// Lista de amigos como un array - Se inicializa con = []
-// let amigos = []
-let amigos = ["Arturo"]
-console.log(typeof(amigos))
-let AmigoSecreto = prompt("Necesito un nombre para empezar:"); 
 
-if(AmigoSecreto == amigos){
-   alert('Acertaste');
-   intentos = intentos+1;
-  }
-   else{
-    alert('No acertaste');
-    intentos = intentos+1
-   }
+//function generaNumeroEnArreglo(){
+//    return Math.floor(Math.random()*numeroAmigos)+1;
+//}
 
-while(AmigoSecreto != amigos){
-    let AmigoSecreto = prompt("Necesito un nombre para sortear:"); 
-    if (AmigoSecreto != amigos){
-        // La condicion se cumple
-        alert('No acertaste');
-        intentos = intentos+1;
-        } else {
-            // La condicion no se cumple
-        alert(`Acertaste, el Amigo Secreto es: ${amigos} lo hiciste en ${intentos}`);
-        break
-    }
+//AsignarTextoElemento('ul',amigos)
+//AsignarTextoElemento('h2','Prueba2')
 
-    if(intentos >= 5){
-        alert('Llegaste al numero maximo de intentos');
-        break
-    }
-   
-}    
-//console.log(nombreDeUsuario)
+
+
+
+
 

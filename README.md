@@ -8,7 +8,7 @@ Para ejecutar el sistema debes poner ```npm install react```
 
 - Prueba 1: Consiste en poner un nombre y comparar con el nombre del amigo secreto en "amigos"
 - Prueba 2: Se utilizan template strings para remarcar la respuesta cuando se ha acertado
-- Prueba 3: 
+- Prueba 3: Se agrega un ciclo while para que el juego comience cada vez que se falle.  No va a mandar un mensaje, si acertamos (Hay que corregir este error)
 
 
 Idea: si son puros nombres, tratarlos como strings, algo que sea diferente de un string o que sea vacio, descartarlo
