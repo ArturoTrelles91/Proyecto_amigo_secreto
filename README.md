@@ -1,101 +1,144 @@
-<h1>Sistema de Registro para el proyecto amigo secreto</h1>
+```md
+# Proyecto "Amigo Secreto" 
 
-- Estado del proyecto: En construcción.
+## Descripción  del proyecto
+Este proyecto es un sistema que permite a los usuarios agregar nombres a una lista de amigos y luego sortear al azar un "Amigo Secreto". Fue desarrollado en **JavaScript** y manipula el **DOM** para actualizar dinámicamente la lista de participantes y mostrar el resultado del sorteo.  
 
-Para ejecutar el sistema debes poner ```npm install react```
+El objetivo de este desafío es mejorar las habilidades en lógica de programación y la manipulación de arreglos en JavaScript.  
 
-- Prueba github
+---
 
-- Prueba 1: Consiste en poner un nombre y comparar con el nombre del amigo secreto en "amigos"
-- Prueba 2: Se utilizan template strings para remarcar la respuesta cuando se ha acertado
-- Prueba 3: Se agrega un ciclo while para que el juego comience cada vez que se falle.  No va a mandar un mensaje, si acertamos (Hay que corregir este error)
+## Describe Funcionalidades  
+✅ Permite agregar nombres a una lista de amigos.  
+✅ Evita agregar nombres duplicados.  
+✅ Muestra la lista actualizada en pantalla.  
+✅ Sortea un amigo secreto al azar.  
+✅ Muestra el resultado en la interfaz.  
 
+---
 
-Idea: si son puros nombres, tratarlos como strings, algo que sea diferente de un string o que sea vacio, descartarlo
+## Listando Archivos principales  
+- `index.html` → Contiene la estructura HTML de la aplicación.  
+- `app.js` → Implementa la lógica de agregar amigos y realizar el sorteo.  
+- `style.css` → Contiene los estilos de la interfaz (opcional).  
 
-Idea: Una vez que se llene el arreglo amigos 
-tomar su posicion en el arreglo por ejemplo de 0 a 9 (10 numeros)
-y usar un numero aleatorio para tomar el nombre que tenga ese numero aleatorio entero en el arreglo, como nombre de Amigo Secreto
+---
 
+## Instalación y ejecución del código
+1. Descarga o clona este repositorio.  
+2. Abre el archivo **`index.html`** en cualquier navegador.  
+3. Escribe un nombre en el campo de texto y presiona "Añadir".  
+4. Cuando hayas agregado todos los nombres, presiona "Sortear amigo".  
+5. El resultado aparecerá en pantalla.  
 
-# Amigo Secreto
+---
 
-## Descripción
-Este proyecto consiste de un programa en JavaScript que permite al usuario agregar nombres de amigos a una lista y posteriormente realizar un sorteo para seleccionar un "Amigo Secreto" al azar.
+## Código principal y funciones
 
-El objetivo de este desafío es fortalecer las habilidades en lógica de programación, manipulando arreglos y la interfaz del DOM en el lenguaje JavaScript.
-
-## Funcionalidades
-- Agregar nombres a una lista de amigos.
-- Evitar nombres duplicados.
-- Mostrar la lista actualizada en la interfaz. [Pendiente de ajustes]
-- Sortear un nombre al azar de la lista de amigos.
-- Mostrar el resultado en pantalla.
-
-## Archivos principales
-- `index.html` → Contiene la estructura HTML.
-- `app.js` → Contiene la lógica principal en JavaScript.
-
-## Instrucciones de uso
-1. **Abrir el archivo `index.html`** en un navegador.
-2. **Ingresar un nombre** en el campo de texto y hacer clic en "Añadir".
-3. **Repetir el proceso** para agregar más nombres a la lista.
-4. **Hacer clic en "Sortear amigo"** para elegir un nombre al azar.
-5. **El resultado se mostrará en pantalla**.
-
-## Código principal
-### `agregarAmigo()`
-Esta función:
-- Obtiene el valor ingresado en el campo de texto.
-- Valida que el campo no esté vacío.
-- Verifica que el nombre no esté repetido en la lista.
-- Agrega el nombre a la lista y actualiza la interfaz.
+### `agregarAmigo()`  
+Esta función:  
+- Obtiene el nombre ingresado en el campo de texto.  
+- Valida que el campo no esté vacío.  
+- Evita nombres repetidos en la lista.  
+- Agrega el nombre al arreglo y actualiza la lista en pantalla.  
 
 ```javascript
-function agregarAmigo() {
-    let nombreDeAmigo = document.getElementById("amigo").value.trim();
+function agregarAmigo(){
+ 
+    let nombreDeAmigo = document.getElementById("amigo").value;
     
     if (nombreDeAmigo === "") {
         alert("Por favor, ingresa un nombre válido.");
         return;
     }
-    
-    if (amigos.includes(nombreDeAmigo)) {
+
+     // Validar si el nombre ya está en la lista
+     if (amigos.includes(nombreDeAmigo)) {
         alert("Este nombre ya ha sido ingresado. No puedes agregarlo nuevamente.");
+        amigo.value = "";
         return;
     }
     
     amigos.push(nombreDeAmigo);
-    actualizarLista();
+ 
+    // Limpiar el input después de agregar
+    amigo.value = "";
+    
+    // Actualizar la lista en la pantalla
+    mostrarAmigos();
+
+    return;
 }
 ```
 
-### `sortearAmigo()`
-Esta función:
-- Verifica si la lista de amigos tiene al menos un nombre.
-- Genera un número aleatorio para seleccionar un nombre de la lista.
-- Muestra el resultado en pantalla.
+### funcion`mostrarAmigos()`  
+Esta función:  
+- Obtiene la lista HTML donde se mostrarán los nombres.  
+- Limpia la lista antes de actualizarla.  
+- Crea elementos `<li>` y los agrega a la lista de manera dinámica.  
 
 ```javascript
-function sortearAmigo() {
+function mostrarAmigos() {
+    // Vamos a obtener la lista <ul>
+    let listaul = document.getElementById("listaAmigos"); 
+
+
+//  Hay que limpiar la lista antes de actualizarla
+    listaul.innerHTML = ""; 
+
+    // Recorrer el array amigos y agregar cada nombre como un <li>
+    for (let i = 0; i < amigos.length; i++) {
+
+        // Crear un <li>
+        let li = document.createElement("li"); 
+        // Asignar el nombre
+        li.textContent = amigos[i]; 
+        // Agregar el elemento <li> a la lista <ul>
+        listaul.appendChild(li); 
+    }
+}
+```
+
+### funcion `sortearAmigo()`  
+Esta función:  
+- Verifica que haya al menos un nombre en la lista.  
+- Genera un índice aleatorio y selecciona un nombre.  
+- Muestra el resultado en pantalla.  
+
+```javascript
+function sortearAmigo(){
+
     if (amigos.length === 0) {
-        alert("Debes agregar al menos un amigo antes de sortear.");
+        alert("Debes agregar al menos un amigo antes de poder sortear.");
         return;
     }
 
-    let AmigoSecreto = amigos[Math.floor(Math.random() * amigos.length)];
-    document.getElementById("resultado").innerHTML = `El amigo secreto es ${AmigoSecreto}`;
+    let AmigoSecreto = amigos[Math.floor(Math.random()*amigos.length)];
+
+// Aqui queremos mostrar el resultado, selecciona el elemento html con el id resultado
+    let resultado = document.getElementById("resultado");
+    resultado.innerHTML = `El amigo secreto es ${AmigoSecreto}`
+    return;
 }
 ```
 
-## Mejoras posibles
-- Implementar un botón para eliminar nombres de la lista.
-- Agregar estilos con CSS para mejorar la interfaz.
-- Permitir la opción de exportar la lista de amigos.
-- Añadir una opción para reiniciar la lista y comenzar de nuevo.
+---
 
-## Autor
-Proyecto desarrollado como ejercicio para mejorar habilidades en lógica de programación y manipulación del DOM con JavaScript.
+## Pruebas y mejoras futuras  
 
+### Pruebas actuales  
+- **Prueba 1**: Agregar nombres y compararlos con la lista.  
+- **Prueba 2**: Uso de *template strings* para mostrar el resultado.  
+- **Prueba 3**: Se planea agregar un bucle para repetir el sorteo si el usuario lo desea.  
 
+### Posibles mejoras  
+- Agregar opción para eliminar nombres de la lista.  
+- Estilizar mejor la interfaz con **CSS**.  
+- Implementar un botón para reiniciar la lista.  
+- Permitir exportar la lista de amigos en un archivo de texto.  
 
+---
+
+## Autor :Arturo Trelles.
+Este proyecto fue desarrollado como parte de un desafío de programación en JavaScript para AluraOne, con el objetivo de mejorar habilidades en lógica y manipulación del **DOM**.   
+```
