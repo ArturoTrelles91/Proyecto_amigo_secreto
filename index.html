@@ -11,11 +11,16 @@
 </head>
 
 <body>
+    <div class="stars"></div> <!-- Añadido aquí para el fondo animado -->
     <main class="main-content">
         <header class="header-banner">
             <h1 class="main-title">Amigo Secreto</h1>
-            <img src="assets/amigo-secreto.png" alt="Imagen representativa de amigo secreto">
+            <img src="assets/angel.jpg" alt="Imagen representativa de amigo secreto">
         </header>
+
+        
+        <!-- Botón permanente para reiniciar el juego -->
+        <button id="btnReset" class="button-reset">Reiniciar Juego</button>
         
         <section class="input-section">
             <h2 class="section-title">Digite el nombre de sus amigos</h2>
@@ -33,10 +38,17 @@
                     ¿Quieres seguir tocando la canción?
                 </button>
             </div>
-            
+
             <div id="audio-controls" class="audio-controls" style="display: none;">
                 <button id="btnPause" class="button-pause">Pausar Canción</button>
               </div>
+
+              <div class="suggestion-box">
+                <h3>Sugerencias de nombres</h3>
+                <ul>
+                    <li>Johnny Silverhand</li>
+                </ul>
+            </div>
 
 
 

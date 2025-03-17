@@ -1,5 +1,5 @@
 :root {
-    --color-primary: #4B69FD;
+    --color-primary:black;
     --color-secondary: #FFF9EB;
     --color-tertiary: #C4C4C4;
     --color-button: #fe652b;
@@ -15,12 +15,39 @@
     box-sizing: border-box;
 }
 
+
+
+/* Fondo estrellado para el body */
 body {
     height: 100vh;
-    background-color: var(--color-primary);
+    background: url("./assets/stars.webp") no-repeat center center fixed;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animación de las estrellas parpadeando */
+@keyframes twinklingStars {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+
+/* Crear una capa de estrellas con animación */
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('./assets/stars.webp') repeat;
+    background-size: 100px 100px;  /* Ajusta el tamaño según tu preferencia */
+    animation: twinklingStars 3s infinite alternate ease-in-out;
+    opacity: 0.6;  /* Ajusta la opacidad para que no quede demasiado brillante */
+    z-index: -1;  /* Asegura que el fondo esté detrás de los demás elementos */
 }
 
 .main-content {
@@ -31,13 +58,32 @@ body {
 }
 
 /* Banner */
+
 .header-banner {
     flex: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 40px 0 0;
+    gap: 400px;
 }
+
+@keyframes shine {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.5); }
+    100% { filter: brightness(1); }
+}
+
+.header-banner img {
+    max-width: 100%;
+    height: auto;
+    width: 300px;
+    display: block;
+    animation: shine 2s infinite alternate ease-in-out;
+}
+
+
+
 
 /* Sección de entrada */
 .input-section {
@@ -142,27 +188,6 @@ ul {
     text-align: center;
 }
 
-/* Botón de sortear título 
-.button-draw {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 10px 40px;
-    color: var(--color-white);
-    background-color: var(--color-button);
-    font-size: 16px;
-}
-
-
-.button-draw img {
-    margin-right: 40px;
-}
-
-.button-draw:hover {
-    background-color: var(--color-button-hover);
-}
-*/
-
 @keyframes glow {
     0% { border-color: #ff0000; box-shadow: 0 0 10px #ff0000; }
     20% { border-color: #ff8000; box-shadow: 0 0 10px #ff8000; }
@@ -214,9 +239,66 @@ ul {
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-bottom: 20px;
 }
 
 .button-continuar:hover {
     background-color: var(--color-button-hover);
     transform: scale(1.05);
+    margin-bottom: 20px;
+}
+
+/* Botón de reinicio permanente */
+.button-reset {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: red;
+    color: white;
+    font-size: 1em;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button-reset:hover {
+    background-color: darkred;
+}
+
+.suggestion-box {
+    position: fixed;
+    bottom: 20px;
+    left: 20px; /* 📌 Cambiado de "right" a "left" */
+    width: 200px;
+    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro semitransparente */
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.suggestion-box h3 {
+    margin: 0;
+    font-size: 16px;
+    text-align: center;
+}
+
+.suggestion-box ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.suggestion-box li {
+    padding: 5px 0;
+    text-align: center;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.suggestion-box li:hover {
+    color: #FFD700; /* Cambia el color al pasar el mouse (dorado) */
 }

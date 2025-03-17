@@ -57,108 +57,6 @@ function mostrarAmigos() {
     }
 }
 
-/*
-function sortearAmigo(){
-
-// Evita que el usuario ponga un campo vacio
-    if (amigos.length === 0) {
-        alert("Debes agregar al menos un amigo antes de poder sortear.");
-        return;
-    }
-// toma un amigo de la lista usando un numero aleatorio y tomando ese numero como lugar en el arreglo
-    let AmigoSecreto = amigos[Math.floor(Math.random()*amigos.length)];
-
-// Aqui queremos mostrar el resultado, selecciona el elemento html con el id resultado
-    let resultado = document.getElementById("resultado");
-    resultado.innerHTML = `El amigo secreto es ${AmigoSecreto}`
-    return;
-}
-*/
-
-
-/*
-function sortearAmigo(){
-    if (amigos.length === 0) {
-        alert("Debes agregar al menos un amigo antes de poder sortear.");
-        return;
-    }
-    
-    // Selecciona un amigo de forma aleatoria
-    let AmigoSecreto = amigos[Math.floor(Math.random() * amigos.length)];
-    
-    // Muestra el resultado en el HTML
-    let resultado = document.getElementById("resultado");
-    resultado.innerHTML = `El amigo secreto es ${AmigoSecreto}`;
-    
-    // Si el amigo seleccionado es Johnny Silverhand, reproduce el fragmento de audio
-    if (AmigoSecreto.toLowerCase() === "johnny silverhand") {
-        // Crea un objeto Audio.
-        let audio = new Audio("./assets/johnny1.m4a");
-        audio.play().catch(error => {
-            console.error("Error al reproducir el audio:", error);
-        });
-    }
-    
-    return;
-}
-*/
-/*
-function sortearAmigo() {
-    if (amigos.length === 0) {
-        alert("Debes agregar al menos un amigo antes de poder sortear.");
-        return;
-    }
-
-    // Seleccionar un amigo al azar
-    const indice = Math.floor(Math.random() * amigos.length);
-    const AmigoSecreto = amigos[indice];
-
-    const resultado = document.getElementById("resultado");
-    resultado.innerHTML = `El amigo secreto es ${AmigoSecreto}`;
-
-    // Si el amigo secreto es Johnny Silverhand, reproducir el fragmento y luego mostrar el botón
-    if (AmigoSecreto.trim().toLowerCase() === "johnny silverhand") {
-        const audioFragmento = new Audio("./assets/johnny1.m4a");
-        audioFragmento.load();
-        audioFragmento.play()
-            .then(() => {
-                console.log("Fragmento reproduciéndose...");
-            })
-            .catch(error => {
-                console.error("Error al reproducir el fragmento:", error);
-            });
-
-        // Al finalizar el fragmento, mostrar el botón para continuar
-        audioFragmento.addEventListener("ended", () => {
-            mostrarBotonContinuar();
-        });
-    }
-}
-
-function mostrarBotonContinuar() {
-    const contenedor = document.getElementById("continuar-container");
-    contenedor.style.display = "flex";
-}
-
-// Agregar event listener al botón estático "btnContinuar" (definido en index.html)
-document.getElementById("btnContinuar").addEventListener("click", () => {
-    // Ocultar el contenedor del botón para evitar múltiples reproducciones
-    document.getElementById("continuar-container").style.display = "none";
-
-    const audioCompleto = new Audio("./assets/neverfade.m4a");
-    audioCompleto.load();
-    audioCompleto.play()
-        .then(() => {
-            console.log("Canción completa reproduciéndose...");
-        })
-        .catch(error => {
-            console.error("Error al reproducir la canción completa:", error);
-        });
-});
-
-*/
-
-
 
 
 function sortearAmigo() {
@@ -246,3 +144,30 @@ document.getElementById("btnPause").addEventListener("click", () => {
         }
     }
 });
+
+
+document.getElementById("btnReset").addEventListener("click", reiniciarJuego);
+
+function reiniciarJuego() {
+    // Limpiar la lista de amigos
+    amigos = [];
+    document.getElementById("listaAmigos").innerHTML = "";
+    
+    // Limpiar el resultado
+    document.getElementById("resultado").innerHTML = "";
+    
+    // Ocultar el botón de continuar si está visible
+    document.getElementById("continuar-container").style.display = "none";
+    
+    // Ocultar los controles de audio si estaban visibles
+    document.getElementById("audio-controls").style.display = "none";
+
+    // Detener cualquier audio que esté sonando
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0; // Reiniciar desde el inicio
+        currentAudio = null;
+    }
+
+    alert("¡El juego ha sido reiniciado!");
+}
