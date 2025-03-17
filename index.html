@@ -20,7 +20,7 @@
 
         
         <!-- Botón permanente para reiniciar el juego -->
-        <button id="btnReset" class="button-reset">Reiniciar Juego</button>
+        <button id="reiniciarButton" class="button-reset">Reiniciar Juego</button>
         
         <section class="input-section">
             <h2 class="section-title">Digite el nombre de sus amigos</h2>
@@ -51,9 +51,8 @@
             </div>
 
 
-
             <div class="button-container">
-                <button class="button-draw" onclick="sortearAmigo()" aria-label="Sortear amigo secreto">
+                <button class="button-draw" onclick="sortearAmigo()" aria-label="Sortear amigo secreto" id="btnSortearAmigo">
                     <img src="assets/play_circle_outline.png" alt="Ícono para sortear">
                     Sortear amigo
                 </button>

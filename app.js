@@ -2,7 +2,7 @@
 // Aquí deberás desarrollar la lógica para resolver el problema.
 // Programa Final
 let amigos = []
-
+let amigosSorteados = []; 
 let currentAudio = null; // Variable global para 
 
 
@@ -79,17 +79,11 @@ function mostrarAmigos() {
 }
 
 
-
+let longitudOriginal = amigos.length; // Guarda la longitud original
 function sortearAmigo() {
+    
     if (amigos.length === 0) {
         alert("Necesitas agregar al menos un amigo para poder sortear.");
-        return;
-    }
-
-     // Si ya se han sorteado todos los amigos
-     if (amigos.length === 0) {
-        alert("Ya se han sorteado todos los amigos.");
-    
         return;
     }
 
@@ -97,20 +91,19 @@ function sortearAmigo() {
     const AmigoSecreto = amigos[indice];
 
     const resultado = document.getElementById("resultado");
+   
+
+    
     resultado.innerHTML = `El amigo secreto es ${AmigoSecreto}`;
 
-    // Eliminar al amigo secreto seleccionado de la lista para que no pueda ser seleccionado nuevamente
-    amigos.splice(indice, 1);  // Elimina 1 elemento en el índice seleccionado
+     // Eliminar al amigo secreto seleccionado de la lista para que no pueda ser seleccionado nuevamente
+     amigos.splice(indice, 1);  // Elimina 1 elemento en el índice seleccionado
+     // Agregar el amigo sorteado a amigosSorteados
+     amigosSorteados.push(AmigoSecreto);
+     mostrarAmigos();
+   
 
-     // Si ya no hay amigos, muestra un mensaje y regresa el botón al original
-     if (amigos.length === 0) {
-        alert("Ya se han sorteado todos los amigos.");
-     
-    }
-
-    mostrarAmigos();
-
-
+   
     // Si el amigo secreto es "Johnny Silverhand", reproducir el fragmento
     if (AmigoSecreto.trim().toLowerCase() === "johnny silverhand") {
         const audioFragmento = new Audio("assets/johnny1.m4a");
@@ -133,11 +126,32 @@ function sortearAmigo() {
             mostrarBotonContinuar();
         });
     }
+
+    // Si ya no hay amigos, muestra un mensaje y regresa el botón al original
+    if (amigos.length === 0) {
+        alert("Ya se han sorteado todos los amigos.");
+     
+    }
+
+    // Mostrar el botón para reiniciar el juego cuando todos hayan sido sorteados
+    if (amigosSorteados.length === longitudOriginal.length) {
+        console.log(amigosSorteados.length);
+        console.log(longitudOriginal.length);
+
+        mostrarBotonReiniciar();
+    }
+
+    
 }
 
 function mostrarBotonContinuar() {
     const contenedor = document.getElementById("continuar-container");
     contenedor.style.display = "flex";
+}
+
+function mostrarBotonReiniciar() {
+    const reiniciarButton = document.getElementById("reiniciarButton");
+    reiniciarButton.style.display = "block"; // Hacer visible el botón de reiniciar
 }
 
 // Event listener para el botón "Continuar" (para reproducir la canción completa)
@@ -186,29 +200,28 @@ document.getElementById("btnPause").addEventListener("click", () => {
 });
 
 
-document.getElementById("btnReset").addEventListener("click", reiniciarJuego);
+document.getElementById("reiniciarButton").addEventListener("click", reiniciarJuego);
+
 
 function reiniciarJuego() {
-    // Limpiar la lista de amigos
+    // Limpiar la lista de amigos y resultados
     amigos = [];
-    document.getElementById("listaAmigos").innerHTML = "";
-    
-    // Limpiar el resultado
-    document.getElementById("resultado").innerHTML = "";
-    
-    // Ocultar el botón de continuar si está visible
-    document.getElementById("continuar-container").style.display = "none";
-    
-    // Ocultar los controles de audio si estaban visibles
-    document.getElementById("audio-controls").style.display = "none";
+    mostrarAmigos();
+    document.getElementById("resultado").innerHTML = ""; // Limpiar el resultado
 
-    // Detener cualquier audio que esté sonando
-    if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0; // Reiniciar desde el inicio
-        currentAudio = null;
-    }
+    // Volver el botón de sortear a su posición original
+    const drawButton = document.querySelector(".button-draw");
+    drawButton.classList.remove("fixed"); // Remover la clase para devolverlo a su lugar original
 
-    alert("¡El juego ha sido reiniciado!");
+    // Volver a mostrar la lista de amigos sin la clase 'compact'
+    document.getElementById("listaAmigos").classList.remove("compact");
+
+    // Resetear el estado del botón de "Sortear Amigo"
+    document.getElementById("continuar-container").style.display = "none"; // Ocultar el botón continuar
+    document.getElementById("audio-controls").style.display = "none"; // Ocultar controles de audio
+
+    // Mostrar de nuevo el botón de "Sortear Amigo"
+    const sortearButton = document.querySelector(".button-draw");
+    sortearButton.style.display = "inline-block"; // Mostrar el botón de nuevo
 }
 
