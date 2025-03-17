@@ -30,6 +30,27 @@ function agregarAmigo(){
     // Actualizar la lista en la pantalla
     mostrarAmigos();
 
+    // Verifica si hay 4 o más nombres en la lista y mueve el botón
+    let drawButton = document.querySelector(".button-draw");
+    
+    //console.log(drawButton); // Esto debe imprimir el botón en la consola
+    if (amigos.length >= 4) {
+        drawButton.classList.add("fixed");
+        //console.log("Clase 'fixed' añadida"); // Confirmación en consola
+    } else {
+        drawButton.classList.remove("fixed");
+        //console.log("Clase 'fixed' eliminada"); // Confirmación en consola
+    }
+
+    let listaul = document.getElementById("listaAmigos");
+
+    if (amigos.length >= 4) {
+      listaul.classList.add("compact");
+    } else {
+      listaul.classList.remove("compact");
+    }
+
+
     return;
 }
 
@@ -61,7 +82,14 @@ function mostrarAmigos() {
 
 function sortearAmigo() {
     if (amigos.length === 0) {
-        alert("Debes agregar al menos un amigo antes de poder sortear.");
+        alert("Necesitas agregar al menos un amigo para poder sortear.");
+        return;
+    }
+
+     // Si ya se han sorteado todos los amigos
+     if (amigos.length === 0) {
+        alert("Ya se han sorteado todos los amigos.");
+    
         return;
     }
 
@@ -70,6 +98,18 @@ function sortearAmigo() {
 
     const resultado = document.getElementById("resultado");
     resultado.innerHTML = `El amigo secreto es ${AmigoSecreto}`;
+
+    // Eliminar al amigo secreto seleccionado de la lista para que no pueda ser seleccionado nuevamente
+    amigos.splice(indice, 1);  // Elimina 1 elemento en el índice seleccionado
+
+     // Si ya no hay amigos, muestra un mensaje y regresa el botón al original
+     if (amigos.length === 0) {
+        alert("Ya se han sorteado todos los amigos.");
+     
+    }
+
+    mostrarAmigos();
+
 
     // Si el amigo secreto es "Johnny Silverhand", reproducir el fragmento
     if (AmigoSecreto.trim().toLowerCase() === "johnny silverhand") {
@@ -171,3 +211,4 @@ function reiniciarJuego() {
 
     alert("¡El juego ha sido reiniciado!");
 }
+

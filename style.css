@@ -266,76 +266,48 @@ button {
 }
 
 /* Listas */
-/*
-ul {
-    list-style-type: none;
-    color: var(--color-text);
-    font-family: "Inter", sans-serif;
-    font-size: 18px;
-    margin: 20px 0;
-}
 
-.result-list {
-    margin-top: 15px;
-    color: #05DF05;
-    font-size: 22px;
-    font-weight: bold;
-    text-align: center;
-}*/
-
-/* Estilos Generales para la lista de nombres (ul) */
-/* Estilos Generales para la lista de nombres (ul) */
 ul {
     list-style-type: none;  /* Quita los puntos de la lista */
     font-family: 'Comic Sans MS', sans-serif;  /* Fuente con estilo relajado */
-    font-size: 22px;
-    margin: 20px 0;
+    font-size: 15px;
+    margin: 15px 0;
     padding: 0;
     text-align: center; /* Centrar todo el contenido de la lista */
 }
 
 /* Estilo para cada nombre dentro de la lista */
 ul li {
-    margin-bottom: 15px;
-    font-size: 22px;
+    margin-bottom: 10px;
+    font-size: 15px;
     font-weight: bold;
+    padding: 8px 20px; 
+    background: rgba(0, 0, 0, 0.5); /* Fondo negro con transparencia */
     color: #8a5c8a; /* Color más apagado */
     text-shadow: 0 0 3px rgba(138, 92, 138, 0.3), 0 0 6px rgba(138, 92, 138, 0.4), 0 0 9px rgba(138, 92, 138, 0.5);  
-    animation: neonColorChange 8s infinite alternate ease-in-out;  /* Animación más lenta */
+    animation: neonGlow 8s infinite alternate ease-in-out;  /* Animación más lenta */
 }
 
-/* Animación con colores menos brillantes */
-@keyframes neonColorChange {
-    0% {
-        color: #8a5c8a; /* Morado desaturado */
-        text-shadow: 0 0 3px rgba(138, 92, 138, 0.3), 0 0 6px rgba(138, 92, 138, 0.4);
-    }
-    25% {
-        color: #b77b5c; /* Naranja más oscuro */
-        text-shadow: 0 0 3px rgba(183, 123, 92, 0.3), 0 0 6px rgba(183, 123, 92, 0.4);
-    }
-    50% {
-        color: #667f9d; /* Azul grisáceo */
-        text-shadow: 0 0 3px rgba(102, 127, 157, 0.3), 0 0 6px rgba(102, 127, 157, 0.4);
-    }
-    75% {
-        color: #7d9d75; /* Verde apagado */
-        text-shadow: 0 0 3px rgba(125, 157, 117, 0.3), 0 0 6px rgba(125, 157, 117, 0.4);
-    }
-    100% {
-        color: #8a5c8a; /* Volver al morado inicial */
-        text-shadow: 0 0 3px rgba(138, 92, 138, 0.3), 0 0 6px rgba(138, 92, 138, 0.4);
-    }
+/* Animación de luces psicodélicas */
+@keyframes neonGlow {
+    0% { color: #ff00ff; text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff; }
+    25% { color: #00ffff; text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff; }
+    50% { color: #ffea00; text-shadow: 0 0 5px #ffea00, 0 0 10px #ffea00, 0 0 15px #ffea00; }
+    75% { color: #ff4500; text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500, 0 0 15px #ff4500; }
+    100% { color: #00ff00; text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00; }
 }
 
 
 
 .result-list {
-    margin-top: 15px;
-    color:white;
+    margin-top: 10px;
+    color: #32CD32; /* Verde intenso */
     font-size: 22px;
     font-weight: bold;
     text-align: center;
+    background-color: black; /* Fondo negro */
+    padding: 10px; /* Espacio alrededor del texto */
+    border-radius: 10px; /* Bordes redondeados */
 }
 
 
@@ -366,9 +338,66 @@ ul li {
     margin-right: 40px;
 }
 
+.fixed {
+    position: absolute;
+    right: 0px; /* Mueve el botón hacia la derecha */
+    left: 70px;
+    top: 60%; /* Lo posiciona en la mitad de la pantalla */
+    transform: translateY(-50%); /* Ajusta la posición para centrarlo bien */
+}
+
+.button-draw.fixed {
+    position: fixed;
+    right: auto;  /* Lo mueve a la derecha */
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+
+
+.compact {
+    max-height: 200px; /* Ajusta según el tamaño de la lista */
+    overflow-y: scroll; /* Siempre muestra la barra de desplazamiento */
+    padding: 10px;
+    padding-right: 150px; /* Deja espacio a la derecha para la barra */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    border-radius: 10px;
+    display: block;
+    position: relative;
+}
+
+/* Para navegadores basados en WebKit (Chrome, Edge, Safari) */
+#listaAmigos.compact::-webkit-scrollbar {
+    width: 12px; /* Grosor de la barra de desplazamiento */
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo de la barra */
+  
+}
+
+/* Estilo del "thumb" de la barra (la parte que se mueve) */
+#listaAmigos.compact::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #FF6347, #FFD700); /* Colores brillantes */
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(255, 105, 180, 0.8); /* Sombras brillantes */
+}
+
+/* Cuando el usuario pasa el mouse sobre la barra */
+#listaAmigos.compact::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #FF4500, #FF1493); /* Colores brillantes en hover */
+    box-shadow: 0px 0px 20px rgba(255, 105, 180, 1);
+}
+
+/* Para Firefox, asegura que la barra de desplazamiento siempre esté visible */
+#listaAmigos.compact {
+    scrollbar-width: thin; /* Barra delgada */
+    scrollbar-color: #FF6347 #000000; /* Color del thumb y fondo */
+}
+
+
+
+
 /* Contenedor del botón de continuar */
 .continuar-container {
-    margin-top: 20px;
+    margin-top: 5px;
     display: flex;
     justify-content: center;
 }
@@ -378,18 +407,20 @@ ul li {
     background-color: var(--color-button);
     color: var(--color-white);
     font-size: 1em;
-    padding: 10px 20px;
+    padding: 10px 15px;
     border: 2px solid var(--color-button-hover);
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    margin-top: 0px;
 }
 
 .button-continuar:hover {
     background-color: var(--color-button-hover);
     transform: scale(1.05);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    margin-top: 0px;
 }
 
 /* Botón de reinicio permanente */
