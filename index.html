@@ -27,6 +27,19 @@
             <ul id="listaAmigos" class="name-list" aria-labelledby="listaAmigos" role="list"></ul>
             <ul id="resultado" class="result-list" aria-live="polite"></ul>
 
+              <!-- Contenedor para el botón de continuar (oculto por defecto) -->
+              <div id="continuar-container" class="continuar-container" style="display: none;">
+                <button id="btnContinuar" class="button-continuar">
+                    ¿Quieres seguir tocando la canción?
+                </button>
+            </div>
+            
+            <div id="audio-controls" class="audio-controls" style="display: none;">
+                <button id="btnPause" class="button-pause">Pausar Canción</button>
+              </div>
+
+
+
             <div class="button-container">
                 <button class="button-draw" onclick="sortearAmigo()" aria-label="Sortear amigo secreto">
                     <img src="assets/play_circle_outline.png" alt="Ícono para sortear">
