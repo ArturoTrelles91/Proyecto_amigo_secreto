@@ -15,18 +15,29 @@
     box-sizing: border-box;
 }
 
-
-
-/* Fondo estrellado para el body */
-body {
-    height: 100vh;
-    background: url("./assets/stars.webp") no-repeat center center fixed;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
+/* Animación de brillo metálico */
+@keyframes metalGlow {
+    0% {
+        text-shadow: 
+            2px 2px 10px rgba(255, 255, 255, 0.2),
+            0 0 20px rgba(255, 255, 255, 0.5),
+            0 0 30px rgba(255, 255, 255, 0.6),
+            0 0 40px rgba(255, 255, 255, 0.7);
+    }
+    50% {
+        text-shadow: 
+            3px 3px 15px rgba(255, 255, 255, 0.4),
+            0 0 30px rgba(255, 255, 255, 0.6),
+            0 0 40px rgba(255, 255, 255, 0.7),
+            0 0 60px rgba(255, 255, 255, 0.9);
+    }
+    100% {
+        text-shadow: 
+            2px 2px 10px rgba(255, 255, 255, 0.3),
+            0 0 25px rgba(255, 255, 255, 0.5),
+            0 0 35px rgba(255, 255, 255, 0.7),
+            0 0 50px rgba(255, 255, 255, 0.8);
+    }
 }
 
 /* Animación de las estrellas parpadeando */
@@ -35,6 +46,37 @@ body {
     50% { opacity: 1; }
     100% { opacity: 0.3; }
 }
+
+
+
+@keyframes shine {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.5); }
+    100% { filter: brightness(1); }
+}
+
+/* Animación de neón con menor intensidad y velocidad */
+@keyframes neonGlow {
+    0% {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #4B69FD, 0 0 20px #4B69FD, 0 0 30px #4B69FD, 0 0 40px #4B69FD;
+    }
+    50% {
+        text-shadow: 0 0 10px #fff, 0 0 15px #4B69FD, 0 0 25px #4B69FD, 0 0 35px #4B69FD, 0 0 50px #4B69FD, 0 0 60px #4B69FD;
+    }
+    100% {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #4B69FD, 0 0 20px #4B69FD, 0 0 30px #4B69FD, 0 0 40px #4B69FD;
+    }
+}
+
+@keyframes glow {
+    0% { border-color: #ff0000; box-shadow: 0 0 10px #ff0000; }
+    20% { border-color: #ff8000; box-shadow: 0 0 10px #ff8000; }
+    40% { border-color: #ffff00; box-shadow: 0 0 10px #ffff00; }
+    60% { border-color: #00ff00; box-shadow: 0 0 10px #00ff00; }
+    80% { border-color: #0000ff; box-shadow: 0 0 10px #0000ff; }
+    100% { border-color: #ff00ff; box-shadow: 0 0 10px #ff00ff; }
+}
+
 
 /* Crear una capa de estrellas con animación */
 .stars {
@@ -50,6 +92,24 @@ body {
     z-index: -1;  /* Asegura que el fondo esté detrás de los demás elementos */
 }
 
+
+
+
+/* Fondo estrellado para el body */
+body {
+    height: 100vh;
+    background: url("./assets/galaxy.avif") no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  
+}
+
+
+
 .main-content {
     display: flex;
     flex-direction: column;
@@ -57,38 +117,43 @@ body {
     width: 100%;
 }
 
+
+
 /* Banner */
 
+
+/* Banner */
 .header-banner {
-    flex: 40%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 0 0;
-    gap: 400px;
+    flex-direction: column;    /* Coloca los elementos (frase e imagen) en columna */
+    justify-content: flex-start; /* Alinea el contenido hacia la parte superior */
+    align-items: center;       /* Alinea los elementos horizontalmente en el centro */
+    height: 60vh;              /* Ajusta la altura del banner para no ocupar toda la pantalla */
+    padding: 20px 0;           /* Añade espacio en la parte superior e inferior */
+    position: relative;
+    margin-bottom: 0px;
+  
 }
 
-@keyframes shine {
-    0% { filter: brightness(1); }
-    50% { filter: brightness(1.5); }
-    100% { filter: brightness(1); }
-}
 
+
+/* Imagen centrada encima de la frase */
 .header-banner img {
-    max-width: 100%;
-    height: auto;
-    width: 300px;
-    display: block;
-    animation: shine 2s infinite alternate ease-in-out;
+    width: 250px;               /* Ajusta el tamaño de la imagen */
+    height: auto;               /* Mantiene la proporción */
+    margin-bottom: 0px;        /* Añade espacio entre la imagen y la parte inferior */
+    margin-top: 20px;
+    margin-bottom: 0px;
+    margin-top:0px;
 }
-
-
 
 
 /* Sección de entrada */
 .input-section {
-    flex: 60%;
-    background-color: var(--color-secondary);
+    flex: 80%;
+    background-image: url('./assets/nightcity.png'); /* Reemplaza por la ruta de tu imagen */
+    background-size: cover; /* Asegura que la imagen cubra toda la sección */
+    background-position: center; /* Centra la imagen dentro de la sección */
     border: 1px solid #000;
     border-radius: 64px 64px 0 0;
     display: flex;
@@ -96,24 +161,53 @@ body {
     align-items: center;
     padding: 20px;
     width: 100%;
+    margin-top: 0px;
 }
 
 /* Títulos */
+/* Efecto metálico para el texto */
 .main-title {
-    font-size: 48px;
-    font-family: "Merriweather", serif;
-    font-weight: 900;
-    font-style: italic;
-    color: var(--color-white);
+    font-size: 3rem;           /* Tamaño grande para destacar */
+    font-weight: bold;
+    font-family: 'Merriweather', serif;
+    text-align: center;        /* Alineación centrada */
+    letter-spacing: 5px;       /* Espaciado entre letras */
+    color: transparent;        /* Hacemos que el color del texto sea transparente */
+    
+    /* Fondo de gradiente metálico */
+    background: linear-gradient(45deg, #d4d4d4, #b0b0b0, #999999, #8b8b8b);
+    background-size: 400% 400%; /* Hace que el gradiente se mueva */
+    
+    -webkit-background-clip: text; /* Aplica el gradiente solo al texto */
+    background-clip: text;
+
+    /* Sombra metálica */
+    text-shadow: 
+        2px 2px 15px rgba(255, 255, 255, 0.2),
+        0 0 20px rgba(255, 255, 255, 0.5),
+        0 0 30px rgba(255, 255, 255, 0.6),
+        0 0 40px rgba(255, 255, 255, 0.7);
+
+    /* Animación del gradiente y las sombras */
+    animation: metalGlow 3s ease-in-out infinite alternate;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-transform: uppercase; /* Asegura que el texto sea todo en mayúsculas */
 }
 
+/* Estilo para el texto */
 .section-title {
-    font-family: "Inter", serif;
-    font-size: 36px;
-    font-weight: 700;
-    color: var(--color-primary);
-    margin: 10px 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: 'Merriweather', serif;
+    animation: neonGlow 5s infinite alternate; /* Animación más lenta (5s) */
     text-align: center;
+    letter-spacing: 2px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    display: inline;
 }
 
 /* Contenedores de entrada y botón */
@@ -172,6 +266,7 @@ button {
 }
 
 /* Listas */
+/*
 ul {
     list-style-type: none;
     color: var(--color-text);
@@ -186,16 +281,64 @@ ul {
     font-size: 22px;
     font-weight: bold;
     text-align: center;
+}*/
+
+/* Estilos Generales para la lista de nombres (ul) */
+/* Estilos Generales para la lista de nombres (ul) */
+ul {
+    list-style-type: none;  /* Quita los puntos de la lista */
+    font-family: 'Comic Sans MS', sans-serif;  /* Fuente con estilo relajado */
+    font-size: 22px;
+    margin: 20px 0;
+    padding: 0;
+    text-align: center; /* Centrar todo el contenido de la lista */
 }
 
-@keyframes glow {
-    0% { border-color: #ff0000; box-shadow: 0 0 10px #ff0000; }
-    20% { border-color: #ff8000; box-shadow: 0 0 10px #ff8000; }
-    40% { border-color: #ffff00; box-shadow: 0 0 10px #ffff00; }
-    60% { border-color: #00ff00; box-shadow: 0 0 10px #00ff00; }
-    80% { border-color: #0000ff; box-shadow: 0 0 10px #0000ff; }
-    100% { border-color: #ff00ff; box-shadow: 0 0 10px #ff00ff; }
+/* Estilo para cada nombre dentro de la lista */
+ul li {
+    margin-bottom: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #8a5c8a; /* Color más apagado */
+    text-shadow: 0 0 3px rgba(138, 92, 138, 0.3), 0 0 6px rgba(138, 92, 138, 0.4), 0 0 9px rgba(138, 92, 138, 0.5);  
+    animation: neonColorChange 8s infinite alternate ease-in-out;  /* Animación más lenta */
 }
+
+/* Animación con colores menos brillantes */
+@keyframes neonColorChange {
+    0% {
+        color: #8a5c8a; /* Morado desaturado */
+        text-shadow: 0 0 3px rgba(138, 92, 138, 0.3), 0 0 6px rgba(138, 92, 138, 0.4);
+    }
+    25% {
+        color: #b77b5c; /* Naranja más oscuro */
+        text-shadow: 0 0 3px rgba(183, 123, 92, 0.3), 0 0 6px rgba(183, 123, 92, 0.4);
+    }
+    50% {
+        color: #667f9d; /* Azul grisáceo */
+        text-shadow: 0 0 3px rgba(102, 127, 157, 0.3), 0 0 6px rgba(102, 127, 157, 0.4);
+    }
+    75% {
+        color: #7d9d75; /* Verde apagado */
+        text-shadow: 0 0 3px rgba(125, 157, 117, 0.3), 0 0 6px rgba(125, 157, 117, 0.4);
+    }
+    100% {
+        color: #8a5c8a; /* Volver al morado inicial */
+        text-shadow: 0 0 3px rgba(138, 92, 138, 0.3), 0 0 6px rgba(138, 92, 138, 0.4);
+    }
+}
+
+
+
+.result-list {
+    margin-top: 15px;
+    color:white;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
 
 .button-draw {
     display: flex;
@@ -212,6 +355,7 @@ ul {
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
     animation: glow 2s infinite linear;
+    margin-top: 40px;
 }
 
 .button-draw:hover {
