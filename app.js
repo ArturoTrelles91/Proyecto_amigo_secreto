@@ -225,21 +225,4 @@ function reiniciarJuego() {
     sortearButton.style.display = "inline-block"; // Mostrar el botón de nuevo
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const inputAmigo = document.getElementById('amigo'); // El campo de texto para el nombre
-    const buttonAdd = document.querySelector('.button-add'); // El botón de añadir amigo
 
-    // Añadir un evento para cuando se presione la tecla "Enter" en el input
-    inputAmigo.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') { // Si se presiona la tecla Enter
-            event.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
-            agregarAmigo(); // Llamar a la función para añadir el amigo
-        }
-    });
-
-    // El evento de clic en el botón también llama a agregarAmigo
-    buttonAdd.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevenir el comportamiento predeterminado del formulario, si es necesario
-        agregarAmigo(); // Llamar a la función para añadir el amigo
-    });
-});
