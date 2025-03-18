@@ -68,6 +68,16 @@
     }
 }
 
+/* Animación de luces psicodélicas */
+@keyframes neonGlow2 {
+    0% { color: #ff00ff; text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff; }
+    25% { color: #00ffff; text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff; }
+    50% { color: #ffea00; text-shadow: 0 0 5px #ffea00, 0 0 10px #ffea00, 0 0 15px #ffea00; }
+    75% { color: #ff4500; text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500, 0 0 15px #ff4500; }
+    100% { color: #00ff00; text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00; }
+}
+
+
 @keyframes glow {
     0% { border-color: #ff0000; box-shadow: 0 0 10px #ff0000; }
     20% { border-color: #ff8000; box-shadow: 0 0 10px #ff8000; }
@@ -278,35 +288,27 @@ ul {
 
 /* Estilo para cada nombre dentro de la lista */
 ul li {
-    margin-bottom: 10px;
-    font-size: 15px;
+    margin-bottom: 5px;
+    font-size: 20px;
     font-weight: bold;
-    padding: 8px 20px; 
+    padding: 8px 15px; 
     background: rgba(0, 0, 0, 0.5); /* Fondo negro con transparencia */
     color: #8a5c8a; /* Color más apagado */
     text-shadow: 0 0 3px rgba(138, 92, 138, 0.3), 0 0 6px rgba(138, 92, 138, 0.4), 0 0 9px rgba(138, 92, 138, 0.5);  
-    animation: neonGlow 8s infinite alternate ease-in-out;  /* Animación más lenta */
+    animation: neonGlow2 8s infinite alternate ease-in-out;  /* Animación más lenta */
 }
 
-/* Animación de luces psicodélicas */
-@keyframes neonGlow {
-    0% { color: #ff00ff; text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff; }
-    25% { color: #00ffff; text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff; }
-    50% { color: #ffea00; text-shadow: 0 0 5px #ffea00, 0 0 10px #ffea00, 0 0 15px #ffea00; }
-    75% { color: #ff4500; text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500, 0 0 15px #ff4500; }
-    100% { color: #00ff00; text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00; }
-}
 
 
 
 .result-list {
-    margin-top: 10px;
-    color: #32CD32; /* Verde intenso */
-    font-size: 22px;
+    margin-top: 5px;
+    color:aquamarine; /* Verde intenso */
+    font-size: 25px;
     font-weight: bold;
     text-align: center;
     background-color: black; /* Fondo negro */
-    padding: 10px; /* Espacio alrededor del texto */
+    padding: 5px; /* Espacio alrededor del texto */
     border-radius: 10px; /* Bordes redondeados */
 }
 
@@ -366,6 +368,7 @@ ul li {
     border-radius: 10px;
     display: block;
     position: relative;
+   
 }
 
 /* Para navegadores basados en WebKit (Chrome, Edge, Safari) */

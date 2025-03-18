@@ -92,9 +92,14 @@ function sortearAmigo() {
 
     const resultado = document.getElementById("resultado");
    
+    resultado.innerHTML = `El amigo secreto es ${AmigoSecreto}`;
 
     
-    resultado.innerHTML = `El amigo secreto es ${AmigoSecreto}`;
+    // Si ya no hay amigos, muestra un mensaje y regresa el botón al original
+    if (amigos.length === 0) {
+        alert("Ya se han sorteado todos los amigos.");
+     
+    }
 
      // Eliminar al amigo secreto seleccionado de la lista para que no pueda ser seleccionado nuevamente
      amigos.splice(indice, 1);  // Elimina 1 elemento en el índice seleccionado
@@ -127,11 +132,6 @@ function sortearAmigo() {
         });
     }
 
-    // Si ya no hay amigos, muestra un mensaje y regresa el botón al original
-    if (amigos.length === 0) {
-        alert("Ya se han sorteado todos los amigos.");
-     
-    }
 
     // Mostrar el botón para reiniciar el juego cuando todos hayan sido sorteados
     if (amigosSorteados.length === longitudOriginal.length) {
