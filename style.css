@@ -128,10 +128,6 @@ body {
 }
 
 
-
-/* Banner */
-
-
 /* Banner */
 .header-banner {
     display: flex;
@@ -177,7 +173,7 @@ body {
 /* Títulos */
 /* Efecto metálico para el texto */
 .main-title {
-    font-size: 3rem;           /* Tamaño grande para destacar */
+    font-size: 2.5rem;           /* Tamaño grande para destacar */
     font-weight: bold;
     font-family: 'Merriweather', serif;
     text-align: center;        /* Alineación centrada */
@@ -316,7 +312,7 @@ ul li {
 
 .button-draw {
     display: flex;
-    align-items: center;
+    align-items: center; /* Alinea verticalmente el ícono y el texto */
     justify-content: center;
     gap: 10px; /* Espacio entre el ícono y el texto */
     background-color: black;
@@ -329,18 +325,19 @@ ul li {
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
     animation: glow 2s infinite linear;
-    margin-top: 40px;
+    margin-top: 20px;
 }
-
-
 
 .button-draw:hover {
     transform: scale(1.1);
 }
 
 .button-draw img {
-    margin-right: 40px;
+    width: 24px; /* Ajusta según el tamaño deseado */
+    height: 24px; /* Asegura que la imagen sea proporcional */
+    margin: 0; /* Elimina el margin-right */
 }
+
 
 .fixed {
     position: absolute;
